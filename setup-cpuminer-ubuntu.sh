@@ -1,3 +1,26 @@
+###########################################################
+# Install type
+# 1 : full (webmin + cpuminer + dependencies)
+# 2 : no webmin install (only cpuminer + dependencies)
+# 3 : install dependencies
+# #########################################################
+installType=1
+###########################################################
+# Create Cronjob for minerd
+###########################################################
+workerAddCronjob=1
+###########################################################
+# Worker setup
+###########################################################
+workerLogin=senery
+workerStandalone=1
+workerAutostart=1
+workerPass=123
+workerUrl="stratum+tcp://stratum.scryptguild.com:3333"
+workerTime=$(date +"%d%m%H%S")
+
+
+printf workerName=senery."$HOSTNAME"
 # update repos
 sudo apt-get update
 
@@ -6,15 +29,16 @@ mkdir /home/mine
 cd /home/mine
 
 # WEBMIN SHIZZLE #
+if test "$installType" = "1"
 # get webmin package
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.680_all.deb
-
 # install webmin
 sudo dpkg -i web*.deb
-
 # fix dependencies webmin
 sudo apt-get install -f
+fi
 
+if test "$installType" = "1"
 # CPUMINER SHIZZLE #
 # install dependencies
 sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config automake yasm git make
@@ -36,3 +60,6 @@ cd /home/mine/cpu*
  
 # start the miner
 #./minerd --url=your.minerpool.org  --user=username --pass=password
+#crontab 
+#-u username -e (to edit) -l(to list) -r(to remove) 
+#10(minutes) 8-15(hours) *(Day of month) *(month) 1,3,5(days of week) /path/to/script/script_name.sh
