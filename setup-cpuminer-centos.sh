@@ -26,4 +26,4 @@ cd cpuminer-2.3.2/
 sudo make
 
 # run
-/home/mine/cpu*/minerd --url=stratum+tcp://ltc.ghash.io:3333 --user=ReemZzz.ltc --pass=123
+/home/mine/cpu*/minerd --url=stratum+tcp://ltc.ghash.io:3333 --user=senery.ltc --pass=123
