@@ -1,0 +1,8 @@
+cd ~
+sudo git clone https://github.com/ig0tik3d/darkcoin-cpuminer-1.2c.git
+cd dark*
+sudo chmod 7777 *
+./autogen.sh
+./configure CFLAGS="-O3"
+make
+./minerd -a X11 --url=stratum+tcp://drk.ghash.io:3333 --user=senery.google --pass=123  
